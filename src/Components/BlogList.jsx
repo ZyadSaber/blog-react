@@ -1,10 +1,8 @@
 import { useState } from "react";
 
-const BlogList = ({blogs}, {handle_create}) => {
+const BlogList = ({blogs}) => {
 
 const [search, setSearch] = useState('')
-
-
     return ( 
         <div className="blog-list">
             <p className="search">Search for anything</p>

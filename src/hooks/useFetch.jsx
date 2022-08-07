@@ -4,11 +4,12 @@ const useFetch = (url) => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
      const [error, setError] = useState(null);
-
+     
     const get_data=async(link)=>{
     const response=await fetch(link);
     const data=await response.json();
     setData(data)
+    setIsPending(false)
     setIsPending(false)
     setError(null)
   }
@@ -16,8 +17,6 @@ const useFetch = (url) => {
     useEffect(() => {
       get_data(url)
       }, [url]);
-
-      
 
       return{data, isPending, error}
 }

@@ -2,20 +2,21 @@ import { useState } from "react";
 
 const Create = ({hide_create}) => {
 
-    const [title, setTitle] = useState('')
-    const [body, setBody] = useState('')
+    const [data, setData] = useState({
+        title: "",
+        body: "",
+});
 
     const heandleSubmit = (e) => {
         e.preventDefault()
-        const newBlog = {title, body, "userId":1}
-
+        const newBlog = {"title": data.title, "body": data.body, userId: 1}
         fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'post',
             headers: {"Content-type": "application/json; charset=UTF-8"},
             body: JSON.stringify(newBlog)
         }).then(() => {
-            setTitle('')
-            setBody('')
+            setData({title: ''})
+            setData({body: ''})
             hide_create()
     })
 
@@ -29,15 +30,15 @@ const Create = ({hide_create}) => {
                 <input
                  type="text"
                  required
-                 value={title}
-                 onChange={(e) => {setTitle(e.target.value)}}
+                 value={data.title}
+                 onChange={(e) => {setData({title: e.target.value})}}
                  placeholder="Write your blog title"
                  ></input>
                  <label>Blog body:</label>
                 <textarea 
                 required
-                value={body}
-                onChange={(e) => {setBody(e.target.value)}}
+                value={data.body}
+                onChange={(e) => {setData({body: e.target.value})}}
                 placeholder="Write your blog body"
                 ></textarea>
                 <button>Post BLog</button>
