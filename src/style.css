@@ -20,12 +20,15 @@
 .navbar .links {
   margin-left: auto;
 }
-.navbar a {
+.navbar button {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
+  background-color: white;
+  border: 0;
+  font-size: 20px;
 }
-.navbar a:hover {
+.navbar button:hover {
   color: #f1356d;
 }
 .content {
@@ -48,7 +51,7 @@
 }
 .create {
   max-width: 100%;
-  margin: 0 150px;
+  margin: 0 150px 40px;
   text-align: center;
 }
 .create label {

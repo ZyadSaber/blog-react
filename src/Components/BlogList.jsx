@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-const BlogList = ({blogs}) => {
+const BlogList = ({blogs}, {handle_create}) => {
 
 const [search, setSearch] = useState('')
+
 
     return ( 
         <div className="blog-list">
             <p className="search">Search for anything</p>
-            <input type="text" onChange={event => {setSearch(event.target.value)}}/>
+            <input type="text" onChange={event => {setSearch(event.target.value);}}/>
             {blogs.filter((blog) => {
                 if (search === "") {
                     return blog

@@ -1,25 +1,28 @@
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import Create from './Components/Create'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useState } from 'react';
+
 
 function App() {
+
+  const [create, setCreate] = useState(null);
+
+  const view_create = () => {
+    setCreate(true)
+  }
+  const hide_create = () => {
+    setCreate(null)
+  }
+
   return (
-    <Router>
       <div className="App">
-        <Navbar />
+        <Navbar view_create={view_create} />
         <div className="content">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/create">
-              <Create />
-            </Route>
-          </Switch>
+          { create && <Create hide_create={hide_create} /> }
+          <Home />
         </div>
       </div>
-    </Router>
   );
 }
 
