@@ -10,7 +10,6 @@ const useFetch = (url) => {
     const data=await response.json();
     setData(data)
     setIsPending(false)
-    setIsPending(false)
     setError(null)
   }
 
