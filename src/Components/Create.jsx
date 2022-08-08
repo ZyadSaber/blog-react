@@ -16,7 +16,7 @@ const Create = ({setCreate, add_post}) => {
         .then((response) => response.json())
         .then((json) => {
             add_post(json)
-            setCreate(null)
+            setCreate()
     })
     }
     return ( 

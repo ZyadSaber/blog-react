@@ -6,21 +6,25 @@ import Create from './Components/Create';
 
 function App() {
   const{data} = useFetch('https://jsonplaceholder.typicode.com/posts');
-  const [search, setSearch] = useState('')
-  const [create, setCreate] = useState(null);
+  const [change, setChange] = useState({
+        search: '',
+        create: null,
+})
+  // const [search, setSearch] = useState('')
+  // const [create, setCreate] = useState(null);
   const add_post = (new_Blog) => {
     data.unshift(new_Blog)
   }
-
+//setChange({search: event.target.value})
 
   return (
     <div className="App">
         <div className="addAndCreate">
-        <button onClick={() => {setCreate(true)}}>Add Post</button>
-        <input type="text" placeholder='search here !' onChange={event => {setSearch(event.target.value);}}/>
+        <button onClick={() => {setChange({...change, create: true})}}>Add Post</button>
+        <input type="text" placeholder='search here !' onChange={event => {setChange({search: event.target.value})}}/>
       </div>
-      { create && <Create setCreate={setCreate} add_post={add_post} /> }
-      {data && <BlogList blogs={data} search={search}/>}
+      { change.create && <Create setCreate={() => {setChange({...change, create: null})}} add_post={add_post} /> }
+      {data && <BlogList blogs={data} search={change.search}/>}
     </div>
   );
 }
