@@ -10,12 +10,9 @@ function App() {
         search: '',
         create: null,
 })
-  // const [search, setSearch] = useState('')
-  // const [create, setCreate] = useState(null);
   const add_post = (new_Blog) => {
     data.unshift(new_Blog)
   }
-//setChange({search: event.target.value})
 
   return (
     <div className="App">
