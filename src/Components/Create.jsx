@@ -1,31 +1,32 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback } from "react";
+import React from "react";
+import { useCallback, useState } from "react";
 
-const Create = ({setCreate, addPost}) => {
+const Create = ({hideCreate, setData, data}) => {
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
 
-    let title, body = ''
-
-    const heandleSubmit = useCallback((btn) => {
+    const heandleSubmit = (btn) => {
         btn.preventDefault()
-        const newBlog = {"title": title, "body":body, userId: 1}
+        const blog = {"title": title, "body": body, userId:1 }
         fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'post',
             headers: {"Content-type": "application/json; charset=UTF-8"},
-            body: JSON.stringify(newBlog)
+            body: JSON.stringify(blog)
         })
         .then((response) => response.json())
         .then((json) => {
-            addPost(json)
-            setCreate()
+            setData([...data, json])
+            hideCreate()  
     })
-    })
-
-    const changeTitle = useCallback((event) => {
-        title = event.target.value
-    }, [title])
+    }
+        const changeTitle =useCallback((event) => {
+        setTitle(event.target.value)
+    },[setTitle])
     const changeBody = useCallback((event) => {
-        body = event.target.value
-    }, [title])
+        setBody(event.target.value)
+    },[setBody])
+
+
 
     return ( 
         <div className="create">
@@ -50,4 +51,4 @@ const Create = ({setCreate, addPost}) => {
      );
 }
  
-export default Create;
+export default React.memo(Create);
