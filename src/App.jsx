@@ -1,9 +1,8 @@
 import './App.css';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, memo } from 'react';
 import useFetch from "../src/Hooks/useFetch";
 import BlogList from './Components/BlogList';
 import Create from './Components/Create';
-import React from "react";
 
 function App() {
   const {data, setData} = useFetch('https://jsonplaceholder.typicode.com/posts');
@@ -15,13 +14,16 @@ const showCreate = useCallback(() => {
 const hideCreate = useCallback(() => {
   setCreate(null)
 }, [setCreate])
+const manageSearch = useCallback((event) => {
+  setSearch(event.target.value)
+},[setSearch])
 
 
   return (
     <div className="App">
         <div className="addAndCreate">
         <button onClick={showCreate}>Add Post</button>
-  <input type="text" placeholder='search here !' onChange={event => {setSearch(event.target.value)}}/>
+  <input type="text" placeholder='search here !' onChange={manageSearch}/>
       </div>
       { create && <Create hideCreate={hideCreate} setData={setData}  data={data} /> }
       {data && <BlogList blogs={data} search={search}/>}
@@ -31,4 +33,4 @@ const hideCreate = useCallback(() => {
   );
 }
 
-export default React.memo(App);
+export default memo(App);

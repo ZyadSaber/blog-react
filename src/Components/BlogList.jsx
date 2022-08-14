@@ -1,4 +1,4 @@
-import React from "react";
+import {memo} from "react";
 const BlogList = ({blogs, search}) => {
 
     return ( 
@@ -24,4 +24,4 @@ const BlogList = ({blogs, search}) => {
      );
 }
  
-export default React.memo(BlogList);
+export default memo(BlogList);
