@@ -15,7 +15,8 @@ const Create = ({hideCreate, setData, data}) => {
     const blogData=await response.json();
     setData([...data, blogData])
     hideCreate()
-},[])
+    console.log(blogData)
+},[title, body, setData, data, hideCreate])
     const changeTitle =useCallback((event) => {
         setTitle(event.target.value)
     },[setTitle])
